@@ -6,7 +6,7 @@ import { enhanceImage } from "$lib/gemini";
 // Rate limit configuration
 const RATE_LIMIT = {
     minIntervalMs: 60 * 1000, // 1 minute between calls
-    maxDailyLimit: 5, // 5 calls per day
+    maxDailyLimit: 2, // 2 calls per day
     dailyResetMs: 24 * 60 * 60 * 1000, // 24 hours
 };
 

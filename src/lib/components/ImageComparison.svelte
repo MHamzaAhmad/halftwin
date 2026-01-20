@@ -50,7 +50,7 @@
 
 <div
 	bind:this={containerRef}
-	class="glass-card animate-fade-in relative aspect-square max-h-96 w-full cursor-ew-resize overflow-hidden rounded-2xl select-none"
+	class="glass-card animate-fade-in relative aspect-square max-h-96 w-full cursor-ew-resize touch-none overflow-hidden rounded-2xl select-none"
 	onmousedown={handleMouseDown}
 	ontouchstart={handleTouchStart}
 	ontouchmove={handleTouchMove}

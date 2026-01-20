@@ -85,8 +85,43 @@
 </script>
 
 <svelte:head>
-	<title>HalfTwin</title>
-	<meta name="description" content="Secure on-device photo enhancement." />
+	<title>HalfTwin – You, but on a really good day</title>
+	<meta
+		name="description"
+		content="Subtle AI photo touch-ups for your selfies. Fix insecurities, keep authenticity. Still you, just enhanced."
+	/>
+	<meta
+		name="keywords"
+		content="photo enhancement, selfie editor, AI photo retouch, subtle photo edit, selfie touch up"
+	/>
+	<meta name="author" content="HalfTwin" />
+	<meta name="robots" content="index, follow" />
+	<link rel="canonical" href="https://halftwin.com" />
+
+	<!-- Open Graph -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://halftwin.com" />
+	<meta property="og:title" content="HalfTwin – You, but on a really good day" />
+	<meta
+		property="og:description"
+		content="Subtle AI photo touch-ups for your selfies. Fix insecurities, keep authenticity. Still you, just enhanced."
+	/>
+	<meta property="og:site_name" content="HalfTwin" />
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="HalfTwin – You, but on a really good day" />
+	<meta
+		name="twitter:description"
+		content="Subtle AI photo touch-ups for your selfies. Fix insecurities, keep authenticity."
+	/>
+
+	<!-- Theme -->
+	<meta name="theme-color" content="#2563eb" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+	<!-- Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link

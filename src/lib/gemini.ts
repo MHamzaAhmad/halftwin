@@ -1,53 +1,33 @@
 import { GoogleGenAI, type Part } from "@google/genai";
 
-const ENHANCEMENT_PROMPT = `You are a professional photo retoucher helping someone feel more confident. Analyze this selfie and create a subtly enhanced version.
+const ENHANCEMENT_PROMPT = `TASK: Professional photo retouch. Intensity level: 4-5 out of 10.
 
-WHAT YOU CAN IMPROVE (subtle tweaks only):
+HARD CONSTRAINTS (never violate):
+- Person must be 100% recognizable as themselves
+- Keep exact same: angle, pose, expression, framing
+- No additions: no jewelry, accessories, makeup, or items not already present
+- No major structural changes to face shape or bone structure
+- Keep natural skin texture visible (don't over-smooth)
 
-HAIR & GROOMING:
-- Make hair look nicely combed and groomed, remove rough/messy appearance
-- If hairs are all messed up every where, make them look normal and groomed and combed but not fake and too much
-- Keep the features of hairs like curls and straight and waves and style just groom them and make them neat
-- If slight baldness/thinning: fill it in naturally to look fuller
-- If significant baldness: improve appearance WITHOUT adding a wig - make it look intentional and stylish
-- Touch up mustache and beard to look groomed, trimmed and neat but keep the style of beard and mustache as it is and keep it natural
-- Keep natural hair color and style
+REQUIRED IMPROVEMENTS (always apply these):
+□ HAIR: Make hair look groomed, neat, and well-styled. Add natural volume and fullness. Clear flyaways and messy strands. If thinning, fill in naturally. Keep original color and style.
+□ FACIAL HAIR: Clean up beard and mustache edges. Make it look freshly trimmed and groomed. Remove patchy spots. Keep the style intact.
+□ SKIN: Clear blemishes, reduce dark circles, even skin tone, add healthy glow.
+□ EYES: Brighten whites, enhance catchlights, make eyes look alert and vibrant.
 
-FACE STRUCTURE:
-- If jawline is asymmetric, make it more balanced and symmetric
-- Slightly refine jawline definition if beneficial
-- Keep natural bone structure recognizable
-- If its female and their face needs some contouring do it subtly
-- if its female and their eyebrows or eyelashes are not groomed, groom them
+BACKGROUND & LIGHTING FIXES (always apply):
+□ Remove lens flares, light leaks, and harsh glare
+□ Clean up distracting background elements
+□ Balance harsh shadows on face
+□ PRESERVE original colors - only subtle corrections, no heavy color grading
 
-FEATURES:
-- EYES: Brighten, reduce dark circles, make them pop
-- NOSE: Minor refinements if it helps balance the face
-- EARS: Subtle adjustments if visible and needed
-- SKIN: Smooth blemishes, even tone, add healthy glow - but keep texture natural
+OPTIONAL (apply if beneficial):
+□ Subtle jawline refinement if asymmetric
+□ Minor eyebrow grooming
 
-MOOD:
-- If the person is smiling keep it and make it bit more prominent but dont overdo it
-- If the person is too serious make him smile a bit but dont overdo it so they dont look fake
+EXPRESSION: Keep the current expression. Do not add or change smile.
 
-OTHER:
-- BODY: Subtle slimming or toning if body is visible - nothing dramatic
-- LIGHTING: Improve overall lighting and shadows
-- COLOR GRADING: Warm, flattering tones
-
-CRITICAL RULES - DO NOT VIOLATE:
-1. THE PERSON MUST REMAIN 100% RECOGNIZABLE - this is NOT a transformation
-2. Keep the SAME camera angle, perspective, and framing - do NOT change these
-3. Keep the SAME pose and expression
-4. Keep the SAME background and environment
-5. All changes must be SUBTLE - think "magazine touch-up" not "plastic surgery"
-6. The sweet spot: viewers should think "they look good!" not "that's a different person"
-7. Preserve unique features that make them who they are - their identity must be intact
-8. If something doesn't need fixing, leave it alone
-9. DONOT try to add jewelry or any accessories
-10. DONOT try to add any makeup or lipstick or anything if not present already
-
-The goal is to hide insecurities while keeping authenticity and identity. Generate the enhanced image.`;
+OUTPUT: Generate the retouched image.`;
 
 export interface EnhanceResult {
 	success: boolean;

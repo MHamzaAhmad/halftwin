@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "notme",
+	"name": "halftwin",
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"compatibility_date": "2025-09-27",
 	"compatibility_flags": [
@@ -13,6 +13,18 @@
 	"assets": {
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
+	},
+	// KV Namespace for rate limiting
+	// Create with: npx wrangler kv namespace create RATE_LIMIT_KV
+	"kv_namespaces": [
+		{
+			"binding": "RATE_LIMIT_KV",
+			"id": "f8b5c69e40704d5ca6e59df1b71b99ec"
+		}
+	],
+	// Environment variables (secrets should be set via: npx wrangler secret put GEMINI_API_KEY)
+	"vars": {
+		// Non-secret vars go here if needed
 	},
 	"observability": {
 		"enabled": true

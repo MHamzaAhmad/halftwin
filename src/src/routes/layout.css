@@ -1,0 +1,136 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+/* ===== Distill-inspired Expressive Minimalist System ===== */
+
+@theme {
+	/* Clean Palette */
+	--color-background: #FFFFFF;
+	--color-surface: #FAFAFA;
+	--color-surface-hover: #F4F4F5;
+	
+	/* Text Colors */
+	--color-text-primary: #111111;
+	--color-text-secondary: #666666;
+	--color-text-tertiary: #999999;
+	
+	/* Accents - Using the blue from the image logo check */
+	--color-accent: #0066FF; 
+	--color-accent-hover: #0052CC;
+	
+	/* Borders */
+	--color-border: #E5E5E5;
+	--color-border-hover: #D4D4D4;
+
+	/* Shadows */
+	--shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.05);
+	--shadow-card: 0 4px 12px rgba(0, 0, 0, 0.05);
+	--shadow-float: 0 12px 24px -6px rgba(0, 0, 0, 0.08);
+}
+
+/* Base Styles */
+:root {
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	background-color: var(--color-background);
+	color: var(--color-text-primary);
+}
+
+body {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
+	letter-spacing: -0.02em; /* Tight tracking for expressive feel */
+	font-weight: 600;
+}
+
+/* ===== Component Styles ===== */
+
+/* Minimal Input/Button Container */
+.input-pill {
+	background: var(--color-background);
+	border: 1px solid var(--color-border);
+	border-radius: 9999px;
+	transition: all 0.2s ease;
+}
+
+.input-pill:hover, .input-pill:focus-within {
+	border-color: var(--color-text-tertiary);
+	box-shadow: var(--shadow-subtle);
+}
+
+/* Primary Action Button */
+.btn-primary {
+	background: var(--color-text-primary); /* Black button like 'Login' usually, or Accent */
+	color: white;
+	font-weight: 500;
+	padding: 0.75rem 1.5rem;
+	border-radius: 9999px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-size: 0.95rem;
+}
+
+.btn-primary:hover {
+	transform: translateY(-1px);
+	background: #000000;
+	box-shadow: var(--shadow-card);
+}
+
+.btn-primary:disabled {
+	background: var(--color-border);
+	color: var(--color-text-tertiary);
+	cursor: not-allowed;
+	transform: none;
+	box-shadow: none;
+}
+
+/* Secondary Button */
+.btn-secondary {
+	background: var(--color-surface);
+	color: var(--color-text-secondary);
+	font-weight: 500;
+	padding: 0.75rem 1.5rem;
+	border-radius: 9999px;
+	border: 1px solid transparent;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-size: 0.95rem;
+}
+
+.btn-secondary:hover {
+	background: var(--color-surface-hover);
+	color: var(--color-text-primary);
+}
+
+/* Upload Zone - Clean & Minimal */
+.upload-zone {
+	background: var(--color-surface);
+	border: 1px dashed var(--color-border);
+	border-radius: 1rem;
+	transition: all 0.2s ease;
+}
+
+.upload-zone:hover, .upload-zone.drag-over {
+	border-color: var(--color-text-tertiary);
+	background: var(--color-surface-hover);
+}
+
+/* Glass/Card - Clean */
+.clean-card {
+	background: var(--color-background);
+	border: 1px solid var(--color-border);
+	border-radius: 1rem;
+	box-shadow: var(--shadow-card);
+}
+
+/* Utilities */
+.text-balance {
+	text-wrap: balance;
+}

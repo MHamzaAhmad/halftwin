@@ -86,12 +86,15 @@
 			class="absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg"
 		>
 			<svg class="h-5 w-5 text-stone-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M8 9l4-4 4 4m0 6l-4 4-4-4"
-				/>
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+			</svg>
+			<svg
+				class="-ml-3 h-5 w-5 text-stone-600"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+			>
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
 			</svg>
 		</div>
 	</div>
@@ -103,10 +106,8 @@
 		Before
 	</div>
 	<div
-		class="absolute top-4 right-4 rounded-full bg-warm-500 px-3 py-1.5 text-xs font-medium text-white"
+		class="absolute top-4 right-4 rounded-full bg-stone-800/70 px-3 py-1.5 text-xs font-medium text-white"
 	>
-		After ✨
+		After
 	</div>
 </div>
-
-<p class="mt-3 text-center text-sm text-stone-400">← Drag slider to compare →</p>

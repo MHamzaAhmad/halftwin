@@ -110,7 +110,7 @@
 			<p class="mx-auto max-w-lg text-lg leading-relaxed text-balance text-stone-500">
 				About to send a selfie but worried they won't like what they see? We're your secret
 				<span class="font-medium text-blue-600">'me but not me'</span> touch-up helper. Subtle fixes to
-				your insecurities so you can hit send with confidence. It's still you—just enhanced.
+				your insecurities so you can hit send with confidence. It's still you, just enhanced.
 			</p>
 		</header>
 

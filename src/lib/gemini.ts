@@ -103,10 +103,71 @@ export async function enhanceImage(
 		};
 	} catch (error) {
 		console.error("Gemini enhancement error:", error);
+
+		// Parse error to provide specific feedback
+		const errorMessage = error instanceof Error ? error.message : String(error);
+		const errorString = errorMessage.toLowerCase();
+
+		// API key errors
+		if (errorString.includes("api key") ||
+			errorString.includes("api_key") ||
+			errorString.includes("invalid key") ||
+			errorString.includes("unauthorized") ||
+			errorString.includes("401")) {
+			return {
+				success: false,
+				error: "Invalid API key. Please check your Gemini API key configuration.",
+			};
+		}
+
+		// Rate limit errors
+		if (errorString.includes("rate limit") ||
+			errorString.includes("quota") ||
+			errorString.includes("resource exhausted") ||
+			errorString.includes("429") ||
+			errorString.includes("too many requests")) {
+			return {
+				success: false,
+				error: "Rate limit exceeded. Please wait a moment and try again.",
+			};
+		}
+
+		// Model/service unavailable
+		if (errorString.includes("model") &&
+			(errorString.includes("not found") || errorString.includes("unavailable"))) {
+			return {
+				success: false,
+				error: "The image enhancement service is temporarily unavailable. Please try again later.",
+			};
+		}
+
+		// Safety/content filters
+		if (errorString.includes("safety") ||
+			errorString.includes("blocked") ||
+			errorString.includes("harmful") ||
+			errorString.includes("content filter")) {
+			return {
+				success: false,
+				error: "Image could not be processed due to content restrictions. Please try a different photo.",
+			};
+		}
+
+		// Network errors
+		if (errorString.includes("network") ||
+			errorString.includes("fetch") ||
+			errorString.includes("timeout") ||
+			errorString.includes("econnrefused") ||
+			errorString.includes("enotfound")) {
+			return {
+				success: false,
+				error: "Network error. Please check your connection and try again.",
+			};
+		}
+
+		// Generic fallback with more context
 		return {
 			success: false,
-			error:
-				error instanceof Error ? error.message : "Failed to enhance image",
+			error: `Enhancement failed: ${errorMessage.slice(0, 100)}`,
 		};
 	}
 }

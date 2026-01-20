@@ -125,10 +125,31 @@ async function recordCall(kv: KVNamespace | undefined, clientIP: string): Promis
     await kv.put(key, JSON.stringify(entry), { expirationTtl: 86400 });
 }
 
-export const POST: RequestHandler = async ({ request, platform }) => {
+export const POST: RequestHandler = async ({ request, platform, url }) => {
     try {
         const kv = platform?.env?.RATE_LIMIT_KV;
         const apiKey = platform?.env?.GEMINI_API_KEY;
+
+        // CSRF protection: validate Origin header
+        const origin = request.headers.get("origin");
+        const allowedOrigin = url.origin;
+
+        if (!origin || origin !== allowedOrigin) {
+            console.warn(`CSRF: origin mismatch - expected ${allowedOrigin}, got ${origin}`);
+            return json(
+                { success: false, error: "Invalid request origin" },
+                { status: 403 }
+            );
+        }
+
+        // Check for API key first - this is a common configuration issue
+        if (!apiKey) {
+            console.error("GEMINI_API_KEY is not configured");
+            return json(
+                { success: false, error: "Service not configured. Please contact support." },
+                { status: 503 }
+            );
+        }
 
         // Check rate limit
         const clientIP = getClientIP(request);
@@ -146,7 +167,17 @@ export const POST: RequestHandler = async ({ request, platform }) => {
             );
         }
 
-        const { imageBase64, mimeType } = await request.json();
+        let body: { imageBase64?: string; mimeType?: string };
+        try {
+            body = await request.json();
+        } catch {
+            return json(
+                { success: false, error: "Invalid request format" },
+                { status: 400 }
+            );
+        }
+
+        const { imageBase64, mimeType } = body;
 
         if (!imageBase64 || !mimeType) {
             return json(
@@ -155,9 +186,10 @@ export const POST: RequestHandler = async ({ request, platform }) => {
             );
         }
 
-        const result = await enhanceImage(imageBase64, mimeType, apiKey || "");
+        const result = await enhanceImage(imageBase64, mimeType, apiKey);
 
         if (!result.success) {
+            // Preserve the specific error from gemini.ts
             return json(
                 { success: false, error: result.error },
                 { status: 500 }
@@ -174,10 +206,12 @@ export const POST: RequestHandler = async ({ request, platform }) => {
         });
     } catch (error) {
         console.error("Enhancement API error:", error);
+        // Provide a more specific fallback message
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         return json(
             {
                 success: false,
-                error: "Something went wrong. Please try again.",
+                error: `Something went wrong: ${errorMessage.slice(0, 100)}`,
             },
             { status: 500 }
         );

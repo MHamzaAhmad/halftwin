@@ -41,16 +41,25 @@
 				})
 			});
 
-			const data = await response.json();
+			const data = (await response.json()) as {
+				success: boolean;
+				imageBase64?: string;
+				mimeType?: string;
+				error?: string;
+			};
 
 			if (!data.success) {
 				throw new Error(data.error || 'Enhancement failed');
 			}
 
-			enhancedBase64 = data.imageBase64;
+			enhancedBase64 = data.imageBase64 || '';
 			enhancedPreviewUrl = `data:${data.mimeType};base64,${data.imageBase64}`;
 		} catch (err) {
-			error = err instanceof Error ? err.message : 'Something went wrong';
+			if (err instanceof TypeError && err.message.includes('fetch')) {
+				error = 'Network error. Please check your connection and try again.';
+			} else {
+				error = err instanceof Error ? err.message : 'Something went wrong';
+			}
 		} finally {
 			isProcessing = false;
 		}

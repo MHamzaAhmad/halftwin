@@ -6,35 +6,79 @@
 
 @theme {
 	/* Clean Palette */
-	--color-background: #FAFAF9;
-	--color-surface: #FAFAFA;
-	--color-surface-hover: #F4F4F5;
+	--color-background: var(--background);
+	--color-surface: var(--surface);
+	--color-surface-hover: var(--surface-hover);
 	
 	/* Text Colors */
-	--color-text-primary: #111111;
-	--color-text-secondary: #666666;
-	--color-text-tertiary: #999999;
+	--color-text-primary: var(--text-primary);
+	--color-text-secondary: var(--text-secondary);
+	--color-text-tertiary: var(--text-tertiary);
 	
-	/* Accents - Using the blue from the image logo check */
-	--color-accent: #0066FF; 
-	--color-accent-hover: #0052CC;
+	/* Accents */
+	--color-accent: var(--accent);
+	--color-accent-hover: var(--accent-hover);
 	
 	/* Borders */
-	--color-border: #E5E5E5;
-	--color-border-hover: #D4D4D4;
+	--color-border: var(--border);
+	--color-border-hover: var(--border-hover);
 
 	/* Shadows */
-	--shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.05);
-	--shadow-card: 0 4px 12px rgba(0, 0, 0, 0.05);
-	--shadow-float: 0 12px 24px -6px rgba(0, 0, 0, 0.08);
+	--shadow-subtle: var(--shadow-subtle);
+	--shadow-card: var(--shadow-card);
+	--shadow-float: var(--shadow-float);
 }
 
 /* Base Styles */
 :root {
+	/* Light Mode Variables */
+	--background: #FFFFFF;
+	--surface: #FAFAFA;
+	--surface-hover: #F4F4F5;
+	
+	--text-primary: #111111;
+	--text-secondary: #666666;
+	--text-tertiary: #999999;
+	
+	--accent: #0066FF; 
+	--accent-hover: #0052CC;
+	
+	--border: #E5E5E5;
+	--border-hover: #D4D4D4;
+
+	--shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.05);
+	--shadow-card: 0 4px 12px rgba(0, 0, 0, 0.05);
+	--shadow-float: 0 12px 24px -6px rgba(0, 0, 0, 0.08);
+
 	font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	background-color: var(--color-background);
 	color: var(--color-text-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		/* Dark Mode Variables */
+		--background: #09090b; /* Zinc 950 */
+		--surface: #18181b;    /* Zinc 900 */
+		--surface-hover: #27272a; /* Zinc 800 */
+		
+		--text-primary: #f4f4f5; /* Zinc 100 */
+		--text-secondary: #a1a1aa; /* Zinc 400 */
+		--text-tertiary: #52525b; /* Zinc 600 */
+		
+		--accent: #3b82f6; /* Blue 500 */
+		--accent-hover: #60a5fa; /* Blue 400 */
+		
+		--border: #27272a; /* Zinc 800 */
+		--border-hover: #3f3f46; /* Zinc 700 */
+
+		/* Adjust shadows for dark mode (subtle light or stronger drop?) */
+		/* Usually in dark mode shadows are less visible, can use lighter borders instead */
+		--shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.5);
+		--shadow-card: 0 4px 12px rgba(0, 0, 0, 0.5);
+		--shadow-float: 0 12px 24px -6px rgba(0, 0, 0, 0.8);
+	}
 }
 
 body {

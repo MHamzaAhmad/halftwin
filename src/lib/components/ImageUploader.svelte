@@ -89,8 +89,10 @@
 </script>
 
 <div
-	class="upload-zone group relative mx-auto aspect-[4/3] w-full max-w-lg cursor-pointer overflow-hidden"
-	class:border-blue-500={dragOver}
+	class="upload-zone group relative mx-auto aspect-[4/3] w-full max-w-lg cursor-pointer overflow-hidden {dragOver
+		? 'dark:bg-blue-900/20'
+		: ''}"
+	class:border-accent={dragOver}
 	class:bg-blue-50={dragOver}
 	class:opacity-50={disabled}
 	ondragover={handleDragOver}
@@ -138,10 +140,10 @@
 		{/if}
 	{:else}
 		<div
-			class="absolute inset-0 flex flex-col items-center justify-center text-stone-400 transition-colors group-hover:text-stone-800"
+			class="absolute inset-0 flex flex-col items-center justify-center text-text-tertiary transition-colors group-hover:text-text-primary"
 		>
 			<div
-				class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-stone-100 transition-colors group-hover:bg-stone-200"
+				class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-surface-hover transition-colors group-hover:bg-border"
 			>
 				<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 					<path
@@ -152,7 +154,7 @@
 					/>
 				</svg>
 			</div>
-			<p class="font-medium text-stone-600">Upload a photo</p>
+			<p class="font-medium text-text-secondary">Upload a photo</p>
 			<p class="mt-2 text-xs">Drag, click, or paste (Ctrl+V)</p>
 		</div>
 	{/if}

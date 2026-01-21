@@ -135,16 +135,16 @@
 		<!-- Header -->
 		<header class="space-y-4 text-center">
 			<div class="mb-4 inline-flex items-center gap-2">
-				<div class="h-6 w-6 rounded-full bg-blue-600"></div>
+				<div class="h-6 w-6 rounded-full bg-accent"></div>
 				<span class="text-lg font-semibold tracking-tight">HalfTwin</span>
 			</div>
 
-			<h1 class="text-4xl font-bold tracking-tight text-balance text-stone-900 sm:text-5xl">
+			<h1 class="text-4xl font-bold tracking-tight text-balance text-text-primary sm:text-5xl">
 				You, but on a <br class="hidden sm:block" /> really good day.
 			</h1>
-			<p class="mx-auto max-w-lg text-lg leading-relaxed text-balance text-stone-500">
+			<p class="mx-auto max-w-lg text-lg leading-relaxed text-balance text-text-secondary">
 				About to send a selfie but worried they won't like what they see? We're your secret
-				<span class="font-medium text-blue-600">'me but not me'</span> touch-up helper. Subtle fixes to
+				<span class="font-medium text-accent">'me but not me'</span> touch-up helper. Subtle fixes to
 				your insecurities so you can hit send with confidence. It's still you, just enhanced.
 			</p>
 		</header>
@@ -154,7 +154,7 @@
 			{#if hasResult}
 				<!-- Result View -->
 				<div class="fade-in space-y-6">
-					<div class="overflow-hidden rounded-2xl border border-stone-200 bg-stone-50">
+					<div class="overflow-hidden rounded-2xl border border-border bg-surface">
 						<ImageComparison beforeSrc={originalPreviewUrl} afterSrc={enhancedPreviewUrl} />
 					</div>
 
@@ -173,7 +173,9 @@
 					/>
 
 					{#if error}
-						<div class="rounded-lg bg-red-50 p-3 text-center text-sm text-red-600">
+						<div
+							class="rounded-lg bg-red-50 p-3 text-center text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400"
+						>
 							{error}
 						</div>
 					{/if}

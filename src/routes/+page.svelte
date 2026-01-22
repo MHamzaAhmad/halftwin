@@ -190,8 +190,20 @@
 		</div>
 
 		<!-- Footer -->
-		<footer class="pt-8 text-center">
+		<footer class="space-y-4 pt-8 text-center">
 			<PrivacyBadge variant="compact" />
+			<nav class="flex items-center justify-center gap-4 text-sm text-text-secondary">
+				<a href="/blog" class="transition-colors hover:text-accent">Blog</a>
+				<span>•</span>
+				<span>
+					Made with ♥ by <a
+						href="https://x.com/hamzadotsh"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-accent hover:underline">@hamzadotsh</a
+					>
+				</span>
+			</nav>
 		</footer>
 	</div>
 </main>
